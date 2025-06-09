@@ -24,9 +24,7 @@ test('rebuild the mozjpeg binaries', async t => {
 		config.push('-DCMAKE_FIND_FRAMEWORK=LAST -DBUILD_SHARED_LIBS=OFF');
 	}
 
-	const cfg = [
-		`cmake  ${config.join(' ')} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${temporary}" .`,
-	].join(' ');
+	const cfg = `cmake  ${config.join(' ')} -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${temporary}" -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .`;
 
 	const source = fileURLToPath(new URL('../vendor/source/mozjpeg.tar.gz', import.meta.url));
 	await binBuild.file(source, [
